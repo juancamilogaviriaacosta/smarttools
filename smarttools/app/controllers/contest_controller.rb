@@ -1,5 +1,6 @@
 class ContestController < ApplicationController
   def manage
   	@admins = Administrator.all
-  end
+  	@contests = Contest.all
+ end
 end
