@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'home' => 'home#index'
 
-  get 'home/about'
+  get 'cc'
 
   post 'accounts/create'
 
