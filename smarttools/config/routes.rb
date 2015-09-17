@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
-  get 'contest' => 'contest#manage'
-
-  get 'accounts/login'
-
-  get 'accounts/register'
-
-  get 'accounts/restore'
-
   get 'home' => 'home#index'
 
-  post 'accounts/create'
+  get 'home/about'
 
+  resources :videos
+  resources :users
+  resources :contests
+  resources :administrators
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
