@@ -9,8 +9,6 @@ Rails.application.routes.draw do
 
   get 'home' => 'home#index'
 
-  get 'cc'
-
   post 'accounts/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
