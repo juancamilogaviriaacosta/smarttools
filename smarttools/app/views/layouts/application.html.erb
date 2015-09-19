@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+    <head>
+        <title>Smarttools</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div id="layout">
+
+            <div id="header">
+
+                <h1 id="logo"><a href="/home" title="#">SmartTools<span>.com</span></a></h1>
+                <hr class="noscreen" />   
+
+
+                <div id="navigation">
+                    <ul>
+                        <li><a href="/home" title="#">HOME</a></li>
+                        <li><a href="/home/about" title="#">QUIENES SOMOS</a></li>
+                        <% if !logged_in? %>
+                            <li><a href="/login" title="#">LOG IN</a></li>
+                            <li><a href="/administrators/new" title="#">REGISTRO</a></li>                            
+                        <% end %>
+                        <% if logged_in? %>
+                            <li><a href="/logout" title="#">LOG OUT</a></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <hr class="noscreen" />  
+            </div>
+
+            <%= yield %>
+            
+        </div>
+        <div id="footer">
+            <div id="footer-inside">
+                <p id="copyright">&copy; 2015 - <a href="/">Smart Tools</a></p>
+                <p id="dont-delete-this">Diseñado por <a href="/home">Smart Tools</a> | Pagina del curso: <a href="http://moodleinstitucional.uniandes.edu.co/"> Moodle</a></p>
+            </div><div style="clear: both;"></div></div>
+    </body>
+</html>
+
+
+
