@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  fechacreacion: 2015-09-13 13:24:00
+  urloriginal: MyString
+  urlconvertido: MyString
+  estado: MyString
+  descripcion: MyString
+  contest_id: 
+  user_id: 
+
+two:
+  nombre: MyString
+  fechacreacion: 2015-09-13 13:24:00
+  urloriginal: MyString
+  urlconvertido: MyString
+  estado: MyString
+  descripcion: MyString
+  contest_id: 
+  user_id: 

@@ -1,0 +1,23 @@
+<div id="main">
+	<h1>Concursos</h1>
+	<p>Administre sus concursos</p>
+	
+	<%@admins.each do |a|%>
+	<p><%=a.nombre%></p>
+	<%end%>
+
+	<table border=0>
+		<tr>
+		    <th>Nombre</th>
+		    <th>Descripcion</th>
+		    <th>Opciones</th>
+	  	</tr>
+		<%@contests.each do |tmp|%>
+			<tr>
+			    <td><%=tmp.nombre%></td>
+			    <td><%=tmp.descripcion%></td>
+			    <td><input type="button" value="Editar"/><input type="button" Value="Eliminar"/></td>
+		  	</tr>
+	  	<%end%>
+  	</table>
+</div>

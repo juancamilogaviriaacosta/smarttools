@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  banner: MyString
+  url: MyString
+  descripcion: MyString
+  premio: MyString
+  fechainicio: 2015-09-13 13:23:58
+  fechafin: 2015-09-13 13:23:58
+  administrator_id: 
+
+two:
+  nombre: MyString
+  banner: MyString
+  url: MyString
+  descripcion: MyString
+  premio: MyString
+  fechainicio: 2015-09-13 13:23:58
+  fechafin: 2015-09-13 13:23:58
+  administrator_id: 
