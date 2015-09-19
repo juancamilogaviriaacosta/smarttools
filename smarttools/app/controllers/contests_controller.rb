@@ -24,6 +24,16 @@ class ContestsController < ApplicationController
   # POST /contests
   # POST /contests.json
   def create
+
+    nombreImagen = SecureRandom.uuid + File.extname(contest_params[:banner].original_filename)
+    carpeta = File.join(Rails.public_path, "uploaded_images", Time.now.strftime("%Y-%m-%d"))
+    rutaAbsoluta = File.join(carpeta, nombreImagen)
+    FileUtils.mkdir_p(carpeta)
+    File.open(rutaAbsoluta, 'wb') do |f|
+       f.write(contest_params[:banner].read)
+    end
+    #@contest = Contest.new({nombre:contest_params[:nombre], banner:rutaAbsoluta, url:contest_params[:url], descripcion:contest_params[:descripcion], premio:contest_params[:premio], fechainicio:contest_params[:fechainicio], fechafin:contest_params[:fechafin], administrator_id:contest_params[:administrator_id]})
+    params[:contest][:banner] = "/uploaded_images/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreImagen
     @contest = Contest.new(contest_params)
 
     respond_to do |format|

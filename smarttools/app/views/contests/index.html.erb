@@ -13,7 +13,7 @@
       <th>Fechainicio</th>
       <th>Fechafin</th>
       <th>Administrator</th>
-      <th colspan="3"></th>
+      <th colspan="3">Opciones</th>
     </tr>
   </thead>
 
@@ -21,7 +21,7 @@
     <% @contests.each do |contest| %>
       <tr>
         <td><%= contest.nombre %></td>
-        <td><%= contest.banner %></td>
+        <td><img src="<%= contest.banner %>" width=100 height=50/></td>
         <td><%= contest.url %></td>
         <td><%= contest.descripcion %></td>
         <td><%= contest.premio %></td>
