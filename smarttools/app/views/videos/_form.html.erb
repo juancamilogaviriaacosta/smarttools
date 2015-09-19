@@ -16,34 +16,18 @@
     <%= f.text_field :nombre %>
   </div>
   <div class="field">
-    <%= f.label :fechacreacion %><br>
-    <%= f.datetime_select :fechacreacion %>
-  </div>
-  <div class="field">
-    <%= f.label :urloriginal %><br>
-    <%= f.text_field :urloriginal %>
-  </div>
-  <div class="field">
-    <%= f.label :urlconvertido %><br>
-    <%= f.text_field :urlconvertido %>
-  </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.text_field :estado %>
-  </div>
-  <div class="field">
     <%= f.label :descripcion %><br>
-    <%= f.text_field :descripcion %>
+    <%= f.text_area :descripcion %>
   </div>
   <div class="field">
     <%= f.label :contest_id %><br>
     <%= f.text_field :contest_id %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.label :archivo %><br>
+    <%= f.file_field :archivo, :accept => 'video/*' %>
   </div>
-  <div class="actions">
+  <div class="field">
     <%= f.submit %>
   </div>
 <% end %>

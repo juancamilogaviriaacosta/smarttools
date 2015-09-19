@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
@@ -24,7 +26,17 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    @video = Video.new(video_params)
+    newFileName = video_params[:nombre] + File.extname(video_params[:archivo].original_filename)
+    path = File.join("uploaded_videos","to_process", video_params[:contest_id] ,)
+    fullFilePath = File.join(path,newFileName)
+
+    FileUtils.mkdir_p(path);
+    File.open(fullFilePath, "wb") {|f| f.write("lolololollolool")}
+
+    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
+      :urloriginal => fullFilePath, :contest_id => video_params[:contest_id], :estado => 'to_proc'}
+
+    @video = Video.new(newParams)
 
     respond_to do |format|
       if @video.save
@@ -69,6 +81,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:nombre, :fechacreacion, :urloriginal, :urlconvertido, :estado, :descripcion, :contest_id, :user_id)
+      params.require(:video).permit(:nombre,:descripcion, :contest_id, :archivo)
     end
   end
