@@ -71,4 +71,4 @@ class VideosController < ApplicationController
     def video_params
       params.require(:video).permit(:nombre, :fechacreacion, :urloriginal, :urlconvertido, :estado, :descripcion, :contest_id, :user_id)
     end
-  end
+end

@@ -5,7 +5,6 @@
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
         <%= csrf_meta_tags %>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     </head>
     <body>
 
@@ -20,22 +19,13 @@
                 <div id="navigation">
                     <ul>
                         <li><a href="/home" title="#">HOME</a></li>
-<<<<<<< HEAD
-=======
-                        <li><a href="/accounts/register" title="#">REGISTRO</a></li>
+                        <li><a href="/administrators/new" title="#">REGISTRO</a></li>
                         <li><a href="/accounts/login" title="#">LOGIN</a></li>
->>>>>>> parent of 7fbb8b6... Se agregan los demas casos de uso
                         <li><a href="/home/about" title="#">QUIENES SOMOS</a></li>
-                        <% if !logged_in? %>
-                            <li><a href="/login" title="#">LOG IN</a></li>
-                            <li><a href="/administrators/new" title="#">REGISTRO</a></li>                            
-                        <% end %>
-                        <% if logged_in? %>
-                            <li><a href="/logout" title="#">LOG OUT</a></li>
-                        <% end %>
                     </ul>
                 </div>
                 <hr class="noscreen" />  
+
             </div>
 
             <%= yield %>
@@ -44,11 +34,10 @@
         <div id="footer">
             <div id="footer-inside">
                 <p id="copyright">&copy; 2015 - <a href="/">Smart Tools</a></p>
-                <p id="dont-delete-this">Diseñado por <a href="/home">Smart Tools</a> | Pagina del curso: <a href="http://moodleinstitucional.uniandes.edu.co/"> Moodle</a></p>
+                <p id="dont-delete-this">Diseñado por <a href="/homse">Smart Tools</a> | Pagina del curso: <a href="http://moodleinstitucional.uniandes.edu.co/"> Moodle</a></p>
             </div><div style="clear: both;"></div></div>
     </body>
 </html>
-
 
 
 

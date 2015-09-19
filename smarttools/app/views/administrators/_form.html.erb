@@ -21,15 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :correo %><br>
-    <%= f.email_field :correo %>
+    <%= f.text_field :correo %>
   </div>
   <div class="field">
     <%= f.label :contrasena %><br>
-    <%= f.password_field :contrasena %>
-  </div>
-  <div class="field">
-    <%= f.label :verificar_contrasena %><br>
-    <%= f.password_field :verificar_contrasena %>
+    <%= f.text_field :contrasena %>
   </div>
   <div class="actions">
     <%= f.submit %>
