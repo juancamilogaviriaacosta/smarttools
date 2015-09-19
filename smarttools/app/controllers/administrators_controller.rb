@@ -25,7 +25,6 @@ class AdministratorsController < ApplicationController
   # POST /administrators.json
   def create
     @administrator = Administrator.new(administrator_params)
-
     respond_to do |format|
       if @administrator.save
         format.html { redirect_to @administrator, notice: 'El administrador ha sido creado correctamente.' }
@@ -35,6 +34,7 @@ class AdministratorsController < ApplicationController
         format.json { render json: @administrator.errors, status: :unprocessable_entity }
       end
     end
+    log_in @administrator
   end
 
   # PATCH/PUT /administrators/1
@@ -71,4 +71,5 @@ class AdministratorsController < ApplicationController
     def administrator_params
       params.require(:administrator).permit(:nombre, :apellido, :correo, :contrasena)
     end
+
 end
