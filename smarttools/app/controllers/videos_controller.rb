@@ -31,15 +31,15 @@ class VideosController < ApplicationController
     fullFilePath = File.join(path,newFileName)
 
     FileUtils.mkdir_p(path);
-    File.open(fullFilePath, "wb") {|f| f.write("lolololollolool")}
+    File.open(fullFilePath, 'wb') {|f| f.write(video_params[:archivo].read)}
 
     newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
       :urloriginal => fullFilePath, :contest_id => video_params[:contest_id], :estado => 'to_proc'}
 
     @video = Video.new(newParams)
-
     respond_to do |format|
       if @video.save
+        @video.convert_to_mp4
         format.html { redirect_to @video, notice: 'Video was successfully created.' }
         format.json { render :show, status: :created, location: @video }
       else
@@ -47,7 +47,7 @@ class VideosController < ApplicationController
         format.json { render json: @video.errors, status: :unprocessable_entity }
       end
     end
-  end
+end
 
   # PATCH/PUT /videos/1
   # PATCH/PUT /videos/1.json
