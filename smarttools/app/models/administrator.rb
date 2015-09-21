@@ -1,3 +1,5 @@
+require 'time'
+
 class Administrator < ActiveRecord::Base
 	validates :correo, presence: {message: 'El correo no puede ser vacio'}
 	validates :correo, uniqueness: {case_sensitive: false, message: 'Este correo ya ha sido registrado'}

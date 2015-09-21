@@ -4,8 +4,8 @@
       <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
 
       <ul>
-      <% @contest.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @contest.errors.messages.each do |key, message| %>
+        <li><%= message[0] %></li>
       <% end %>
       </ul>
     </div>
@@ -40,11 +40,8 @@
     <%= f.label :fechafin %><br>
     <%= f.datetime_select :fechafin %>
   </div>
-  <div class="field">
-    <%= f.label :administrator_id %><br>
-    <%= f.text_field :administrator_id %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<%= debug @contest.errors%>

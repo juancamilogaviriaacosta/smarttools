@@ -15,7 +15,12 @@ class ContestsController < ApplicationController
   # GET /contests.json
   def index
 #   @contests = Contest.all
-    @contests = Contest.paginate(:page => params[:page], :per_page=>10)
+    adminConstest = Contest.find_by(administrator_id: current_user)
+    if adminConstest
+      @contests = Contest.where(administrator_id: current_user).paginate(:page => params[:page], :per_page=>10)
+    else 
+      @contests = nil
+    end
   end
 
   # GET /contests/1
@@ -47,7 +52,7 @@ class ContestsController < ApplicationController
     
     params[:contest][:banner] = "/uploaded_images/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreImagen
     params[:contest][:url] = "http://" + request.host + ":" + (request.port.to_s) +"/contests/join/" + params[:contest][:url]
-
+    params[:contest][:administrator_id] = current_user.id;
     @contest = Contest.new(contest_params)
 
     respond_to do |format|
