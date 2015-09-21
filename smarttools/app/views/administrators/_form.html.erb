@@ -4,8 +4,8 @@
       <h2><%= pluralize(@administrator.errors.count, "error") %> prohibited this administrator from being saved:</h2>
 
       <ul>
-      <% @administrator.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @administrator.errors.messages.each do |key, message| %>
+        <li><%= message[0] %></li>
       <% end %>
       </ul>
     </div>
@@ -24,12 +24,12 @@
     <%= f.email_field :correo %>
   </div>
   <div class="field">
-    <%= f.label :contrasena %><br>
+    <%= f.label :contraseña %><br>
     <%= f.password_field :contrasena %>
   </div>
   <div class="field">
-    <%= f.label :verificar_contrasena %><br>
-    <%= f.password_field :verificar_contrasena %>
+    <%= f.label :confirmación_contraseña %><br>
+    <%= f.password_field :contrasena_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>
