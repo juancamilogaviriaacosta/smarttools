@@ -4,7 +4,8 @@ class AdministratorsController < ApplicationController
   # GET /administrators
   # GET /administrators.json
   def index
-    @administrators = Administrator.all
+#   @administrators = Administrator.all
+    @administrators = Administrator.paginate(:page => params[:page], :per_page=>10)
   end
 
   # GET /administrators/1

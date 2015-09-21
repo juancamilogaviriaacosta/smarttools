@@ -18,6 +18,7 @@
   </thead>
 
   <tbody>
+    <%= will_paginate @videos %>
     <% @videos.each do |video| %>
       <tr>
         <td><%= video.nombre %></td>

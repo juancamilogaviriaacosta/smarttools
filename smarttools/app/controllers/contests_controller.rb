@@ -14,7 +14,8 @@ class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.json
   def index
-    @contests = Contest.all
+#   @contests = Contest.all
+    @contests = Contest.paginate(:page => params[:page], :per_page=>10)
   end
 
   # GET /contests/1
