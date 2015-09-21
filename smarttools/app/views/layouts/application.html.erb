@@ -20,7 +20,7 @@
                 <div id="navigation">
                     <ul>
                         <li><a href="/home" title="#">HOME</a></li>
-                        <li><a href="/home/about" title="#">QUIENES SOMOS</a></li>
+                        <li><a href="/home/about" title="#">QUIÉNES SOMOS</a></li>
                         <% if !logged_in? %>
                             <li><a href="/login" title="#">LOG IN</a></li>
                             <li><a href="/administrators/new" title="#">REGISTRO</a></li>                            
@@ -32,7 +32,7 @@
                 </div>
                 <hr class="noscreen" />  
             </div>
-
+            <!--
             <div id="main">
                 <a href="/home">HOME</a>&nbsp;&nbsp;&nbsp;
                 <a href="/administrators">ADMINISTRADORES</a>&nbsp;&nbsp;&nbsp;
@@ -40,7 +40,7 @@
                 <a href="/users">USUARIOS</a>&nbsp;&nbsp;&nbsp;
                 <a href="/videos">VIDEOS</a>
             </div>
-
+            -->
             <%= yield %>
             
         </div>

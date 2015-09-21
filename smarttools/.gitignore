@@ -14,3 +14,5 @@
 
 /uploaded_videos/to_process/*
 /uploaded_videos/processed/*
+
+/public/*
