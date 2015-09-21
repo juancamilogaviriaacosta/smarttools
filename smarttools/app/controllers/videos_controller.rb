@@ -10,6 +10,11 @@ class VideosController < ApplicationController
     @videos = Video.paginate(:page => params[:page], :per_page=>10)
   end
 
+  def join
+    sql = ["SELECT videos.* FROM videos WHERE videos.contest_id = :contest_id", { :contest_id => session[:tmp_contest_id] }]
+    @videos = Video.paginate_by_sql(sql, :page => params[:page], :per_page=>10)
+  end
+
   # GET /videos/1
   # GET /videos/1.json
   def show
@@ -18,7 +23,7 @@ class VideosController < ApplicationController
   # GET /videos/new
   def new
     @video = Video.new
-    @video.contest_id = session[:tmp_uuid]
+    @video.contest_id = session[:tmp_contest_id]
   end
 
   # GET /videos/1/edit

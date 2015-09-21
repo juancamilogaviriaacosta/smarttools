@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/about'
 
   get 'contests/join/:uuid' => 'contests#join'
+  get 'videos/join/:uuid' => 'videos#join'
 
   resources :videos
   resources :users
