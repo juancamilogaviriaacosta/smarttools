@@ -17,19 +17,20 @@
   </div>
   <div class="field">
     <%= f.label :banner %><br>
-    <%= f.file_field :banner %>
+    <%= f.file_field :banner, :required => true  %>
   </div>
   <div class="field">
     <%= f.label :url %><br>
+    <input type"text" value="<%='http://' + request.host + ':' + (request.port.to_s) +'/contests/join/'%>" disabled="true"/>&nbsp;
     <%= f.text_field :url %>
   </div>
   <div class="field">
     <%= f.label :descripcion %><br>
-    <%= f.text_field :descripcion %>
+    <%= f.text_area :descripcion %>
   </div>
   <div class="field">
     <%= f.label :premio %><br>
-    <%= f.text_field :premio %>
+    <%= f.text_area :premio %>
   </div>
   <div class="field">
     <%= f.label :fechainicio %><br>

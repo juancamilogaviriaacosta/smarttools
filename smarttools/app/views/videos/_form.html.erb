@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :contest_id %><br>
-    <%= f.text_field :contest_id %>
+    <%= f.text_field :contest_id, :readonly => true%>
   </div>
   <div class="field">
     <%= f.label :archivo %><br>
-    <%= f.file_field :archivo, :accept => 'video/*' %>
+    <%= f.file_field :archivo, :accept => 'video/*', :required => true %>
   </div>
   <div class="field">
     <%= f.submit %>

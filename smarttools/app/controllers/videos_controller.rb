@@ -17,6 +17,7 @@ class VideosController < ApplicationController
   # GET /videos/new
   def new
     @video = Video.new
+    @video.contest_id = session[:tmp_uuid]
   end
 
   # GET /videos/1/edit

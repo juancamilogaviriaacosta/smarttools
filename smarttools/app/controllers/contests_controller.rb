@@ -1,6 +1,16 @@
 class ContestsController < ApplicationController
   before_action :set_contest, only: [:show, :edit, :update, :destroy]
 
+  def join
+      @contest = Contest.find_by_url("http://" + request.host + ":" + (request.port.to_s) + "/contests/join/" +params[:uuid])
+      if (@contest)
+        session[:tmp_uuid] = @contest.id
+        redirect_to("/videos/new")
+      else
+        redirect_to("/404.html")
+      end
+  end
+
   # GET /contests
   # GET /contests.json
   def index
@@ -15,6 +25,7 @@ class ContestsController < ApplicationController
   # GET /contests/new
   def new
     @contest = Contest.new
+    @contest.url = SecureRandom.uuid
   end
 
   # GET /contests/1/edit
@@ -32,8 +43,10 @@ class ContestsController < ApplicationController
     File.open(rutaAbsoluta, 'wb') do |f|
        f.write(contest_params[:banner].read)
     end
-    #@contest = Contest.new({nombre:contest_params[:nombre], banner:rutaAbsoluta, url:contest_params[:url], descripcion:contest_params[:descripcion], premio:contest_params[:premio], fechainicio:contest_params[:fechainicio], fechafin:contest_params[:fechafin], administrator_id:contest_params[:administrator_id]})
+    
     params[:contest][:banner] = "/uploaded_images/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreImagen
+    params[:contest][:url] = "http://" + request.host + ":" + (request.port.to_s) +"/contests/join/" + params[:contest][:url]
+
     @contest = Contest.new(contest_params)
 
     respond_to do |format|
@@ -50,6 +63,17 @@ class ContestsController < ApplicationController
   # PATCH/PUT /contests/1
   # PATCH/PUT /contests/1.json
   def update
+    nombreImagen = SecureRandom.uuid + File.extname(contest_params[:banner].original_filename)
+    carpeta = File.join(Rails.public_path, "uploaded_images", Time.now.strftime("%Y-%m-%d"))
+    rutaAbsoluta = File.join(carpeta, nombreImagen)
+    FileUtils.mkdir_p(carpeta)
+    File.open(rutaAbsoluta, 'wb') do |f|
+       f.write(contest_params[:banner].read)
+    end
+    
+    params[:contest][:banner] = "/uploaded_images/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreImagen
+    params[:contest][:url] = "http://" + request.host + ":" + (request.port.to_s) +"/contests/join/" + params[:contest][:url]
+
     respond_to do |format|
       if @contest.update(contest_params)
         format.html { redirect_to @contest, notice: 'Contest was successfully updated.' }

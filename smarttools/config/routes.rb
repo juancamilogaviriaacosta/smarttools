@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get 'logout' => 'session#destroy'
 
   get 'home' => 'home#index'
-
   get 'home/about'
+
+  get 'contests/join/:uuid' => 'contests#join'
 
   resources :videos
   resources :users
