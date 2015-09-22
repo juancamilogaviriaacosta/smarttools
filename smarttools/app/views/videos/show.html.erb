@@ -35,7 +35,7 @@
     <br/>
     <% if @video.urlconvertido %>
     <video width="720" height="480" controls>
-      <source src="<%= @video.urlconvertido %>">
+      <source src="<%= @video.urlconvertido %>" type="video/mp4">
       </video>
     <% else %>
       ¡Proximamente!

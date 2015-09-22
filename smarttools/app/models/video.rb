@@ -7,8 +7,8 @@ class Video < ActiveRecord::Base
 
   #Transcodes this video to an mp4 (h.264/aac) format
   def convert_to_mp4
-FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
-    options = "-f mp4 -strict -2"
+    #FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
+    options = "-acodec aac -vcodec mpeg4 -strict experimental"
     pathAOriginal = urloriginal.clone
     pathAOriginal[0] = ''
     pathAOriginal = File.join(Rails.public_path, pathAOriginal) 
@@ -16,12 +16,12 @@ FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
 
     nombreVideo = SecureRandom.uuid + ".mp4"
     carpeta = File.join(Rails.public_path, "uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed")
-    rutaAbsoluta = File.join("/uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed", nombreVideo)
+    rutaAbsoluta = File.join(carpeta, nombreVideo)
     FileUtils.mkdir_p(carpeta)
 
-    self.urlconvertido = rutaAbsoluta
+    self.urlconvertido = File.join("/uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed", nombreVideo)
 
-    ffMovie.transcode(urlconvertido, options)
+    ffMovie.transcode(rutaAbsoluta, options)
 
     self.estado = 'proc'
     self.save
