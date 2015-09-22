@@ -11,10 +11,10 @@ class Contest < ActiveRecord::Base
 	def fechas_validas
 		fInicial = Time.parse(fechainicio.to_s);
 		fFinal = Time.parse(fechafin.to_s)
-		if(fInicial.past?)
+		if((fInicial + 60*60*24).past?)
 			errors.add(:fechainicio, "La fecha inicial no puede haber pasado")
 		end
-		if(fFinal.past?)
+		if((fFinal + 60*60*24).past?)
 			errors.add(:fechainicio, "La fecha final no puede haber pasado")
 		end
 		if((fInicial <=> fFinal) == 1)

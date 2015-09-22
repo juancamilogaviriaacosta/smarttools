@@ -5,7 +5,7 @@ class ContestsController < ApplicationController
       @contest = Contest.find_by_url("http://" + request.host + ":" + (request.port.to_s) + "/contests/join/" +params[:uuid])
       if (@contest)
         session[:tmp_uuid] = @contest.id
-        redirect_to("/videos/new")
+        redirect_to @contest
       else
         redirect_to("/404.html")
       end

@@ -24,6 +24,8 @@ class Video < ActiveRecord::Base
   	self.estado = 'proc'
   	FileUtils.rm(urloriginal)
   	self.save
+
+    UserMailer.convertido_mail(User.find(self.user_id), self).deliver
   end
   handle_asynchronously :convert_to_mp4
 end

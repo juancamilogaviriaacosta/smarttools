@@ -35,9 +35,16 @@ class VideosController < ApplicationController
     FileUtils.mkdir_p(path);
     File.open(fullFilePath, 'wb') {|f| f.write(video_params[:archivo].read)}
 
-    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
-      :urloriginal => fullFilePath, :contest_id => video_params[:contest_id], :estado => 'to_proc'}
 
+    user = User.find_by(correo: params[:correo_usuario])
+    
+    if !user
+      user = User.create({:nombre => params[:nombre_usuario], :apellido => params[:apellido_usuario], :correo => params[:correo_usuario]})
+    end
+
+    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
+      :urloriginal => fullFilePath, :contest_id => video_params[:contest_id], :estado => 'to_proc', :user_id => user.id}
+    
     @video = Video.new(newParams)
     respond_to do |format|
       if @video.save
@@ -83,6 +90,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:nombre,:descripcion, :contest_id, :archivo)
+      params.permit(:nombre,:descripcion, :contest_id, :archivo)
     end
   end
