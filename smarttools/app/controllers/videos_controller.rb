@@ -52,7 +52,7 @@ class VideosController < ApplicationController
     end
 
     newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
-      :urloriginal => fullFilePath, :contest_id => video_params[:contest_id], :estado => 'to_proc', :user_id => user.id}
+      :urloriginal => rutaAbsoluta, :contest_id => video_params[:contest_id], :estado => 'to_proc', :user_id => user.id}
     
     @video = Video.new(newParams)
     respond_to do |format|
