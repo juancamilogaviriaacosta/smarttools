@@ -33,15 +33,17 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    newFileName = video_params[:nombre] + File.extname(video_params[:archivo].original_filename)
-    path = File.join("uploaded_videos","to_process", video_params[:contest_id] ,)
-    fullFilePath = File.join(path,newFileName)
-
-    FileUtils.mkdir_p(path);
-    File.open(fullFilePath, 'wb') {|f| f.write(video_params[:archivo].read)}
+    nombreVideo = SecureRandom.uuid + File.extname(video_params[:archivo].original_filename)
+    carpeta = File.join(Rails.public_path, "uploaded_videos", Time.now.strftime("%Y-%m-%d"))
+    rutaAbsoluta = File.join(carpeta, nombreVideo)
+    FileUtils.mkdir_p(carpeta)
+    File.open(rutaAbsoluta, 'wb') do |f|
+       f.write(video_params[:archivo].read)
+    end
 
     newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
-      :urloriginal => fullFilePath, :contest_id => video_params[:contest_id], :estado => 'to_proc'}
+      :urloriginal => "/uploaded_videos/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreVideo, 
+      :contest_id => video_params[:contest_id], :estado => 'to_proc'}
 
     @video = Video.new(newParams)
     respond_to do |format|
