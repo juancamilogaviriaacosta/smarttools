@@ -10,6 +10,11 @@ class VideosController < ApplicationController
     @videos = Video.paginate(:page => params[:page], :per_page=>10)
   end
 
+  def join
+    sql = ["SELECT videos.* FROM videos WHERE videos.contest_id = :contest_id", { :contest_id => session[:tmp_contest_id] }]
+    @videos = Video.paginate_by_sql(sql, :page => params[:page], :per_page=>10)
+  end
+
   # GET /videos/1
   # GET /videos/1.json
   def show
@@ -18,7 +23,7 @@ class VideosController < ApplicationController
   # GET /videos/new
   def new
     @video = Video.new
-    @video.contest_id = session[:tmp_uuid]
+    @video.contest_id = session[:tmp_contest_id]
   end
 
   # GET /videos/1/edit
@@ -28,14 +33,18 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    newFileName = video_params[:nombre] + File.extname(video_params[:archivo].original_filename)
-    path = File.join("uploaded_videos","to_process", video_params[:contest_id] ,)
-    fullFilePath = File.join(path,newFileName)
+    nombreVideo = SecureRandom.uuid + File.extname(video_params[:archivo].original_filename)
+    carpeta = File.join(Rails.public_path, "uploaded_videos", Time.now.strftime("%Y-%m-%d"))
+    rutaAbsoluta = File.join(carpeta, nombreVideo)
+    FileUtils.mkdir_p(carpeta)
+    File.open(rutaAbsoluta, 'wb') do |f|
+       f.write(video_params[:archivo].read)
+    end
 
-    FileUtils.mkdir_p(path);
-    File.open(fullFilePath, 'wb') {|f| f.write(video_params[:archivo].read)}
-
-
+    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
+      :urloriginal => "/uploaded_videos/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreVideo, 
+      :contest_id => video_params[:contest_id], :estado => 'to_proc'}
+      
     user = User.find_by(correo: params[:correo_usuario])
     
     if !user

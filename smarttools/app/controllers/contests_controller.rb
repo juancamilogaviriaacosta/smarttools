@@ -4,8 +4,8 @@ class ContestsController < ApplicationController
   def join
       @contest = Contest.find_by_url("http://" + request.host + ":" + (request.port.to_s) + "/contests/join/" +params[:uuid])
       if (@contest)
-        session[:tmp_uuid] = @contest.id
-        redirect_to @contest
+        session[:tmp_contest_id] = @contest.id
+        redirect_to("/videos/join/" + params[:uuid])
       else
         redirect_to("/404.html")
       end
@@ -32,6 +32,8 @@ class ContestsController < ApplicationController
   def new
     @contest = Contest.new
     @contest.url = SecureRandom.uuid
+    @contest.fechainicio = Time.now + 86000
+    @contest.fechafin = Time.now + 160000
   end
 
   # GET /contests/1/edit

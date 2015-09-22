@@ -11,16 +11,6 @@
 </p>
 
 <p>
-  <strong>Urloriginal:</strong>
-  <%= @video.urloriginal %>
-</p>
-
-<p>
-  <strong>Urlconvertido:</strong>
-  <%= @video.urlconvertido %>
-</p>
-
-<p>
   <strong>Estado:</strong>
   <%= @video.estado %>
 </p>
@@ -39,6 +29,26 @@
   <strong>User:</strong>
   <%= @video.user %>
 </p>
+
+<p>
+  <strong>Video original:</strong>
+  <br/>
+  <video width="720" height="480" controls>
+    <source src="<%= @video.urloriginal %>">
+  </video>
+</p>
+
+<br/><br/><br/>
+
+<p>
+  <strong>Video convertido:</strong>
+  <br/>
+  <video width="720" height="480" controls>
+    <source src="<%= @video.urlconvertido %>">
+  </video>
+</p>
+
+
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
