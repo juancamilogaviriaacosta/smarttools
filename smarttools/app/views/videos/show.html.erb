@@ -1,55 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @video.nombre %>
-</p>
+<h1><%= @video.nombre %></h1>
+<h3><p>
+  <%= @video.descripcion %>
+</p></h3>
 
 <p>
-  <strong>Fechacreacion:</strong>
+  <strong>Fecha de Creación</strong>
   <%= @video.fechacreacion %>
 </p>
 
 <p>
-  <strong>Estado:</strong>
-  <%= @video.estado %>
+  <strong>Pertenece al concurso:</strong>
+  <%= @video.contest.nombre %>
 </p>
 
 <p>
-  <strong>Descripcion:</strong>
-  <%= @video.descripcion %>
+  <strong>Subido por:</strong>
+  <%= @video.user.nombre + " " + @video.user.apellido %>
 </p>
-
-<p>
-  <strong>Contest:</strong>
-  <%= @video.contest %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @video.user %>
-</p>
-
+<% if current_user && @contest.administrator_id == current_user.id %>
 <p>
   <strong>Video original:</strong>
   <br/>
   <video width="720" height="480" controls>
     <source src="<%= @video.urloriginal %>">
-  </video>
-</p>
+    </video>
+  </p>
 
-<br/><br/><br/>
+  <br/><br/><br/>
+  <% end %>
+  <p>
+    <strong>Video:</strong>
+    <br/>
+    <% if @video.urlconvertido %>
+    <video width="720" height="480" controls>
+      <source src="<%= @video.urlconvertido %>">
+      </video>
+    <% else %>
+      ¡Proximamente!
+    <% end %>
+    </p>
 
-<p>
-  <strong>Video convertido:</strong>
-  <br/>
-  <video width="720" height="480" controls>
-    <source src="<%= @video.urlconvertido %>">
-  </video>
-</p>
-
-
-
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>
+    <%= link_to 'Volver', @url_concurso %>
+    <%= debug @video %>
 

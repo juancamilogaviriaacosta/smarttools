@@ -9,11 +9,14 @@ class Video < ActiveRecord::Base
   def convert_to_mp4
 FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
     options = "-f mp4 -strict -2"
-    ffMovie = FFMPEG::Movie.new(Rails.public_path + urloriginal)
+    pathAOriginal = urloriginal.clone
+    pathAOriginal[0] = ''
+    pathAOriginal = File.join(Rails.public_path, pathAOriginal) 
+    ffMovie = FFMPEG::Movie.new(pathAOriginal)
 
     nombreVideo = SecureRandom.uuid + ".mp4"
     carpeta = File.join(Rails.public_path, "uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed")
-    rutaAbsoluta = File.join(carpeta, nombreVideo)
+    rutaAbsoluta = File.join("/uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed", nombreVideo)
     FileUtils.mkdir_p(carpeta)
 
     self.urlconvertido = rutaAbsoluta

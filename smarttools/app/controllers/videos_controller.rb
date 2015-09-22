@@ -13,11 +13,15 @@ class VideosController < ApplicationController
   def join
     sql = ["SELECT videos.* FROM videos WHERE videos.contest_id = :contest_id", { :contest_id => session[:tmp_contest_id] }]
     @videos = Video.paginate_by_sql(sql, :page => params[:page], :per_page=>10)
+    @banner = Contest.find(session[:tmp_contest_id]).banner
+    @contest = Contest.find(session[:tmp_contest_id])
   end
 
   # GET /videos/1
   # GET /videos/1.json
   def show
+    @contest = Contest.find(session[:tmp_contest_id])
+    @url_concurso = Contest.find(@video.contest_id).url
   end
 
   # GET /videos/new
@@ -41,19 +45,16 @@ class VideosController < ApplicationController
        f.write(video_params[:archivo].read)
     end
 
-    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
-      :urloriginal => "/uploaded_videos/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreVideo, 
-      :contest_id => video_params[:contest_id], :estado => 'to_proc'}
-      
     user = User.find_by(correo: params[:correo_usuario])
     
     if !user
       user = User.create({:nombre => params[:nombre_usuario], :apellido => params[:apellido_usuario], :correo => params[:correo_usuario]})
     end
-
-    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
-      :urloriginal => rutaAbsoluta, :contest_id => video_params[:contest_id], :estado => 'to_proc', :user_id => user.id}
     
+    newParams = {:nombre => video_params[:nombre], :descripcion => video_params[:descripcion], :fechacreacion => Time.now, :urlconvertido => nil,
+      :urloriginal => "/uploaded_videos/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreVideo, 
+      :contest_id => params[:contest_id], :estado => 'to_proc', :user_id => user.id}
+      
     @video = Video.new(newParams)
     respond_to do |format|
       if @video.save

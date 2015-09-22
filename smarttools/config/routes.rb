@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'
   get 'home/about'
 
-  get "test" => "test#video_test"
+  get 'test' => 'test#video_test'
 
   get 'contests/join/:uuid' => 'contests#join'
   get 'videos/join/:uuid' => 'videos#join'
+  get 'videos/new/:contest_id' => 'videos#new'
+  post 'videos/:contest_id' => 'videos#create'
 
   resources :videos
   resources :users
