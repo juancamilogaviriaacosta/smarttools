@@ -7,23 +7,21 @@ class Video < ActiveRecord::Base
 
   #Transcodes this video to an mp4 (h.264/aac) format
   def convert_to_mp4
-  	FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
-  	options = "-f mp4 -strict -2"
-  	ffMovie = FFMPEG::Movie.new(urloriginal)
+FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
+    options = "-f mp4 -strict -2"
+    ffMovie = FFMPEG::Movie.new(Rails.public_path + urloriginal)
 
-  	newFileName = nombre + '.mp4'
-  	path = File.join("uploaded_videos","processed", contest_id.to_s)
-  	fullFilePath = File.join(path,newFileName)
+    nombreVideo = SecureRandom.uuid + ".mp4"
+    carpeta = File.join(Rails.public_path, "uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed")
+    rutaAbsoluta = File.join(carpeta, nombreVideo)
+    FileUtils.mkdir_p(carpeta)
 
-  	self.urlconvertido = fullFilePath
+    self.urlconvertido = rutaAbsoluta
 
-  	FileUtils.mkdir_p(path);
+    ffMovie.transcode(urlconvertido, options)
 
-  	ffMovie.transcode(urlconvertido, options)
-
-  	self.estado = 'proc'
-  	FileUtils.rm(urloriginal)
-  	self.save
+    self.estado = 'proc'
+    self.save
 
     UserMailer.convertido_mail(User.find(self.user_id), self).deliver
   end
