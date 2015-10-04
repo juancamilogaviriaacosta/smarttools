@@ -38,13 +38,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
+  address:              'email-smtp.us-west-2.amazonaws.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            'smarttoolse6',
-  password:             'DesarrolloCloud',
-  authentication:       'plain',
-  enable_starttls_auto: true  }
+  user_name:            <%= ENV['SMARTTOOLS_SES_USER'] %>,
+  password:             <%= ENV['SMARTTOOLS_SES_PASS'] %>,
+  authentication:       :login,
+  enable_starttls_auto: true  
+  }
   config.action_mailer.perform_deliveries = true
 
   # Raises error for missing translations
