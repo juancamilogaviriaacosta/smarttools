@@ -16,9 +16,9 @@
 #
 default: &default
   adapter: postgresql
-  username: core
-  password: core
-  host: localhost
+  username: <%= ENV['SMARTTOOLS_DB_USER'] %>
+  password: <%= ENV['SMARTTOOLS_DB_PASS'] %>
+  host: smarttoolsdb.cssnr2c08l58.us-west-2.rds.amazonaws.com
   port: 5432
   encoding: UTF8
   # For details on connection pooling, see rails configuration guide
