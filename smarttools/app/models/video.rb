@@ -7,7 +7,7 @@ class Video < ActiveRecord::Base
 
   #Transcodes this video to an mp4 (h.264/aac) format
   def convert_to_mp4
-    #FFMPEG.ffmpeg_binary = 'dependencies/ffmpeg'
+    #FFMPEG.ffmpeg_binary = '/usr/local/Cellar/ffmpeg/2.8.reinstall/bin/ffmpeg'
     options = "-acodec aac -vcodec mpeg4 -strict experimental"
     pathAOriginal = urloriginal.clone
     pathAOriginal[0] = ''

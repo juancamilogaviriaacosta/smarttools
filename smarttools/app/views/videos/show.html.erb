@@ -35,13 +35,11 @@
     <br/>
     <% if @video.urlconvertido %>
     <video width="720" height="480" controls>
-      <source src="<%= @video.urlconvertido %>" type="video/mp4">
+      <source src="<%= @video.urlconvertido %>" >
       </video>
-    <% else %>
+      <% else %>
       ¡Proximamente!
-    <% end %>
+      <% end %>
     </p>
 
     <%= link_to 'Volver', @url_concurso %>
-    <%= debug @video %>
-
