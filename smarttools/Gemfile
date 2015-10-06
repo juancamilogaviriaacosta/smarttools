@@ -29,6 +29,10 @@ gem 'streamio-ffmpeg'
 
 gem 'daemons'
 
+gem 'dotenv-rails'
+
+gem 'aws-sdk'
+
 # Para paginación
 gem "will_paginate"
 

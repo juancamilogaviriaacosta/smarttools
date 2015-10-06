@@ -41,8 +41,8 @@ Rails.application.configure do
   address:              'email-smtp.us-west-2.amazonaws.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            <%= ENV['SMARTTOOLS_SES_USER'] %>,
-  password:             <%= ENV['SMARTTOOLS_SES_PASS'] %>,
+  user_name:            ENV['SMARTTOOLS_SES_USER'],
+  password:             ENV['SMARTTOOLS_SES_PASS'],
   authentication:       :login,
   enable_starttls_auto: true  
   }

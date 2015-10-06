@@ -1,0 +1,1 @@
+AWS.config(access_key_id: ENV['KEY'], secret_access_key: ENV['SECRET'], region: 'us-west-2')
