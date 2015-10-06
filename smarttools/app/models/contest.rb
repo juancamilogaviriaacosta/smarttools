@@ -1,4 +1,12 @@
 class Contest < ActiveRecord::Base
+
+	has_attached_file :banner, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+  validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
+
 	belongs_to :administrator
 
 	validates :nombre, presence: {message: 'El nombre no puede ser vacio'}

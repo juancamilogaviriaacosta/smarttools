@@ -31,7 +31,9 @@ gem 'daemons'
 
 gem 'dotenv-rails'
 
-gem 'aws-sdk'
+gem 'paperclip', '~> 4.3'
+
+gem 'aws-sdk', '< 2.0'
 
 # Para paginación
 gem "will_paginate"

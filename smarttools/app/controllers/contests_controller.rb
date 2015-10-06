@@ -44,15 +44,15 @@ class ContestsController < ApplicationController
   # POST /contests.json
   def create
 
-    nombreImagen = SecureRandom.uuid + File.extname(contest_params[:banner].original_filename)
-    carpeta = File.join(Rails.public_path, "uploaded_images", Time.now.strftime("%Y-%m-%d"))
-    rutaAbsoluta = File.join(carpeta, nombreImagen)
-    FileUtils.mkdir_p(carpeta)
-    File.open(rutaAbsoluta, 'wb') do |f|
-       f.write(contest_params[:banner].read)
-    end
+#    nombreImagen = SecureRandom.uuid + File.extname(contest_params[:banner].original_filename)
+#    carpeta = File.join(Rails.public_path, "uploaded_images", Time.now.strftime("%Y-%m-%d"))
+#    rutaAbsoluta = File.join(carpeta, nombreImagen)
+#   FileUtils.mkdir_p(carpeta)
+#    File.open(rutaAbsoluta, 'wb') do |f|
+#       f.write(contest_params[:banner].read)
+#    end
     
-    params[:contest][:banner] = "/uploaded_images/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreImagen
+#    params[:contest][:banner] = "/uploaded_images/" + Time.now.strftime("%Y-%m-%d") + "/" + nombreImagen
     params[:contest][:url] = "http://" + request.host + ":" + (request.port.to_s) +"/contests/join/" + params[:contest][:url]
     params[:contest][:administrator_id] = current_user.id;
     @contest = Contest.new(contest_params)

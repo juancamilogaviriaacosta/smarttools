@@ -22,7 +22,7 @@
     <% @contests.each do |contest| %>
       <tr>
         <td><%= contest.nombre %></td>
-        <td><img src="<%= contest.banner %>" width=100 height=50/></td>
+        <td><img src="<%= contest.banner.url(:square) %>"/></td>
         <td><a href="<%= contest.url %>"><%= contest.url %></a></td>
         <td><%= contest.descripcion %></td>
         <td><%= contest.premio %></td>
