@@ -2,6 +2,10 @@ require 'streamio-ffmpeg'
 require 'fileutils'
 
 class Video < ActiveRecord::Base
+
+  has_attached_file :videooriginals3
+  do_not_validate_attachment_file_type :videooriginals3
+
 	belongs_to :contest
 	belongs_to :user
 

@@ -1,4 +1,4 @@
-<%= form_tag('/videos/'+@video.contest_id.to_s, multipart: "true") %>
+<%= form_tag('/videos/'+@video.contest_id.to_s, multipart: true) %>
   <% if @video.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
@@ -32,8 +32,8 @@
     <%= email_field_tag :correo_usuario %>
   </div>
   <div class="field">
-    <%= label_tag :archivo %><br>
-    <%= file_field_tag :archivo, :accept => 'video/*', :required => true %>
+    <%= label_tag :videooriginals3 %><br>
+    <%= file_field_tag :videooriginals3, :accept => 'video/*', :required => true %>
   </div>
   <div class="field">
     <%= submit_tag "Subir Video" %>
