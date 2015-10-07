@@ -34,7 +34,7 @@ class Video < ActiveRecord::Base
     carpeta = File.join(Rails.public_path, "tmp_videos", Time.now.strftime("%Y-%m-%d"))
     FileUtils.mkdir_p(carpeta)
     rutaAbsolutaTmp = File.join(carpeta, SecureRandom.uuid + ".mp4")
-    download = open(self.videooriginals3)
+    download = open(self.videooriginals3.url)
     IO.copy_stream(download, rutaAbsolutaTmp)
 
     rutaAbsolutaConvertido = File.join(carpeta, SecureRandom.uuid + ".mp4")
@@ -46,6 +46,9 @@ class Video < ActiveRecord::Base
     archivo = File.basename(rutaAbsolutaConvertido)
     rutaS3 = 'videos/processed/' + Time.now.strftime("%Y-%m-%d") + "/" + archivo
     s3.buckets[ENV['BUCKET']].objects[rutaS3].write(:file => rutaAbsolutaConvertido)
+
+
+    
 
     self.urlconvertido = 'https://s3-us-west-2.amazonaws.com/smarttoolscloud/' + rutaS3
     self.estado = 'proc'
