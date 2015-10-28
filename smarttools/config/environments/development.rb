@@ -59,4 +59,8 @@ Rails.application.configure do
     :secret_access_key => ENV['SECRET']
     }
   }
+
+
+  config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
+
 end
