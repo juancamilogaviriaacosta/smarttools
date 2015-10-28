@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'
   get 'home/about'
 
-  get 'test' => 'test#video_test'
+  get 'testMail' => 'test#mail_test'
+  get 'testVideo' => 'test#video_test'
 
   get 'contests/join/:uuid' => 'contests#join'
   get 'videos/join/:uuid' => 'videos#join'
