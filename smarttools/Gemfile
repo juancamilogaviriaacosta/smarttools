@@ -25,6 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'delayed_job_active_record'
 
+gem 'delayed_job'
+
+gem 'delayed_job_sqs'
+
 gem 'streamio-ffmpeg'
 
 gem 'daemons'
