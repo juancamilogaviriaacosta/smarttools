@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/kumichou/delayed_job_sqs.git
+  revision: 497e511a06c8fa76383ba41c31f3917d872d17ce
+  specs:
+    delayed_job_sqs (0.1.0)
+      aws-sdk (= 1.11.1)
+      delayed_job (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,9 +74,6 @@ GEM
     delayed_job_active_record (4.1.0)
       activerecord (>= 3.0, < 5)
       delayed_job (>= 3.0, < 5)
-    delayed_job_sqs (0.1.0)
-      aws-sdk (= 1.11.1)
-      delayed_job (>= 3.0.0)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
@@ -180,11 +185,11 @@ DEPENDENCIES
   dalli-elasticache
   delayed_job
   delayed_job_active_record
-  delayed_job_sqs
+  delayed_job_sqs!
   dotenv-rails
   jbuilder (~> 2.0)
   jquery-rails
-  paperclip (~> 4.3)
+  paperclip
   pg
   rails (= 4.2.4)
   sass-rails (~> 5.0)

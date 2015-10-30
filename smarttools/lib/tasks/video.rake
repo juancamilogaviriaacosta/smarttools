@@ -1,14 +1,13 @@
 require 'streamio-ffmpeg'
 require 'fileutils'
-require 'paperclip'
 
 class Video < ActiveRecord::Base
 
   has_attached_file :videooriginals3
   do_not_validate_attachment_file_type :videooriginals3
 
-	belongs_to :contest
-	belongs_to :user
+        belongs_to :contest
+        belongs_to :user
 
   #Transcodes this video to an mp4 (h.264/aac) format
   def convert_to_mp4
@@ -49,7 +48,7 @@ class Video < ActiveRecord::Base
     s3.buckets[ENV['BUCKET']].objects[rutaS3].write(:file => rutaAbsolutaConvertido)
 
 
-    
+
 
     self.urlconvertido = 'https://s3-us-west-2.amazonaws.com/smarttoolscloud/' + rutaS3
     self.estado = 'proc'

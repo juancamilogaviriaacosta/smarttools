@@ -27,7 +27,7 @@ gem 'delayed_job_active_record'
 
 gem 'delayed_job'
 
-gem 'delayed_job_sqs'
+gem 'delayed_job_sqs', :git => 'git://github.com/kumichou/delayed_job_sqs.git'
 
 gem 'streamio-ffmpeg'
 
@@ -35,7 +35,7 @@ gem 'daemons'
 
 gem 'dotenv-rails'
 
-gem 'paperclip', '~> 4.3'
+gem 'paperclip'# , '~> 4.3'
 
 gem 'aws-sdk', '< 2.0'
 
