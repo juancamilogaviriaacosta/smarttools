@@ -78,6 +78,10 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
+    dynamoid (0.7.1)
+      activemodel
+      aws-sdk
+      tzinfo
     erubis (2.7.0)
     execjs (2.6.0)
     globalid (0.3.6)
@@ -187,6 +191,7 @@ DEPENDENCIES
   delayed_job_active_record
   delayed_job_sqs!
   dotenv-rails
+  dynamoid
   jbuilder (~> 2.0)
   jquery-rails
   paperclip

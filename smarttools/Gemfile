@@ -29,6 +29,8 @@ gem 'delayed_job'
 
 gem 'delayed_job_sqs', :git => 'git://github.com/kumichou/delayed_job_sqs.git'
 
+gem 'dynamoid'
+
 gem 'streamio-ffmpeg'
 
 gem 'daemons'
