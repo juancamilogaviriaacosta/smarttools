@@ -15,9 +15,9 @@ class ContestsController < ApplicationController
   # GET /contests.json
   def index
 #   @contests = Contest.all
-    adminConstest = Contest.find_by(administrator_id: current_user)
+    adminConstest = Contest.where(administrator_id: current_user)
     if adminConstest
-      @contests = Contest.where(administrator_id: current_user).paginate(:page => params[:page], :per_page=>10)
+      @contests = Contest.where(administrator_id: current_user).all#.paginate(:page => params[:page], :per_page=>10)
     else 
       @contests = nil
     end
