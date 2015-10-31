@@ -6,6 +6,15 @@ GIT
       aws-sdk (= 1.11.1)
       delayed_job (>= 3.0.0)
 
+GIT
+  remote: https://github.com/Veraticus/Dynamoid.git
+  revision: f14530528f49101e4d882ba2644a9a63c05c1487
+  specs:
+    dynamoid (0.7.1)
+      activemodel
+      aws-sdk
+      tzinfo
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,10 +87,6 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
-    dynamoid (0.7.1)
-      activemodel
-      aws-sdk
-      tzinfo
     erubis (2.7.0)
     execjs (2.6.0)
     globalid (0.3.6)
@@ -191,7 +196,7 @@ DEPENDENCIES
   delayed_job_active_record
   delayed_job_sqs!
   dotenv-rails
-  dynamoid
+  dynamoid!
   jbuilder (~> 2.0)
   jquery-rails
   paperclip
