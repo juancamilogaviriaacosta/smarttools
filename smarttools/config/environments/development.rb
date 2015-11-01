@@ -62,7 +62,7 @@ Rails.application.configure do
 
 
   config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
-  
-  config.action_controller.asset_host = ENV['CLOUDFRONT_DIST']
+
+  #config.action_controller.asset_host = ENV['CLOUDFRONT_DIST']
 
 end
