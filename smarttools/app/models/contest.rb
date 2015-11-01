@@ -1,5 +1,5 @@
-#require 'paperclip'
-class Contest #< ActiveRecord::Base
+require 'paperclip'
+class Contest < ActiveRecord::Base
 	#include Paperclip::Glue
 	#include Dynamoid::Document
 =begin

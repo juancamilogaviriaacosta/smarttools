@@ -1,3 +1,5 @@
+=begin
+
 require 'streamio-ffmpeg'
 require 'fileutils'
 
@@ -58,3 +60,8 @@ class Video < ActiveRecord::Base
   end
   handle_asynchronously :convert_to_mp4
 end
+
+
+
+
+=end
