@@ -115,7 +115,7 @@ h5 { font-size:100%; }
       z-index: 10;
       }
       
-      #panel-right { float:right; width:230px; padding: 15px 10px 10px 10px; color: }
+      #panel-right { float:right; width:230px; padding: 15px 10px 10px 10px;}
       #panel-right-inside {border-left: 1px solid #ca4747; padding: 0 0 0 16px;}
       #panel-right span { color: #e49695; }
       #panel-right p {margin: 0;}

@@ -76,4 +76,35 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.assets.raise_runtime_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'email-smtp.us-west-2.amazonaws.com',
+  port:                 587,
+  domain:               'gmail.com',
+  user_name:            ENV['SMARTTOOLS_SES_USER'],
+  password:             ENV['SMARTTOOLS_SES_PASS'],
+  authentication:       :login,
+  enable_starttls_auto: true  
+  }
+  config.action_mailer.perform_deliveries = true
+
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['BUCKET'],
+    :access_key_id => ENV['KEY'],
+    :secret_access_key => ENV['SECRET']
+    }
+  }
+
+
+  config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
+
+  #config.action_controller.asset_host = ENV['CLOUDFRONT_DIST']
 end

@@ -44,6 +44,8 @@ gem 'aws-sdk', '< 2.0'
 
 gem 'dalli-elasticache'
 
+gem 'rails_12factor'
+
 # Para paginación
 gem "will_paginate"
 
