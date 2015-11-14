@@ -103,8 +103,12 @@ Rails.application.configure do
     }
   }
 
+	
+  if ENV["MEMCACHEDCLOUD_SERVERS"]
+    config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  end
 
-  config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
+  #config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
 
   #config.action_controller.asset_host = ENV['CLOUDFRONT_DIST']
 end
