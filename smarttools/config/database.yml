@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: smarttools_production
-  username: smarttools
-  password: <%= ENV['SMARTTOOLS_DATABASE_PASSWORD'] %>
+  database: smarttools_production 
+  #username: smarttools
+  #password: <%= ENV['SMARTTOOLS_DATABASE_PASSWORD'] %>

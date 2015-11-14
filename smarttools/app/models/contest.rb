@@ -1,26 +1,11 @@
-require 'paperclip'
 class Contest < ActiveRecord::Base
-	#include Paperclip::Glue
-	#include Dynamoid::Document
-=begin
-	field :nombre
-	field :banner
-	field :url
-	field :descripcion
-	field :premio
-	field :fechainicio, :datetime
-	field :fechafin, :datetime
-	field :banner_file_name
-	field :banner_content_type
-	field :banner_file_size, :integer
-	field :banner_updated_at, :datetime
-=end
-	has_attached_file :banner, styles: {
-	    	thumb: '100x100>',
-    		square: '200x200#',
-   	 	medium: '300x300>'
-  	}
-  	validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
+
+  has_attached_file :banner, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+  validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
 
 	belongs_to :administrator
 
@@ -44,4 +29,4 @@ class Contest < ActiveRecord::Base
 			errors.add(:fechainicio, "La fecha inicial no puede ser despues de la final")
 		end
 	end
-end
+end 
