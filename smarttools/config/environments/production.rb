@@ -79,17 +79,17 @@ Rails.application.configure do
 
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  address:              'email-smtp.us-west-2.amazonaws.com',
-  port:                 587,
-  domain:               'gmail.com',
-  user_name:            ENV['SMARTTOOLS_SES_USER'],
-  password:             ENV['SMARTTOOLS_SES_PASS'],
-  authentication:       :login,
-  enable_starttls_auto: true  
-  }
-  config.action_mailer.perform_deliveries = true
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #address:              'email-smtp.us-west-2.amazonaws.com',
+  #port:                 587,
+  #domain:               'gmail.com',
+  #user_name:            ENV['SMARTTOOLS_SES_USER'],
+  #password:             ENV['SMARTTOOLS_SES_PASS'],
+  #authentication:       :login,
+  #enable_starttls_auto: true  
+  #}
+  #config.action_mailer.perform_deliveries = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
@@ -102,9 +102,12 @@ Rails.application.configure do
     :secret_access_key => ENV['SECRET']
     }
   }
-
+	
+  #if ENV["MEMCACHEDCLOUD_SERVERS"]
+  #config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  #end
 
   #config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
-
   #config.action_controller.asset_host = ENV['CLOUDFRONT_DIST']
+  
 end
