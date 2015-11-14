@@ -102,11 +102,10 @@ Rails.application.configure do
     :secret_access_key => ENV['SECRET']
     }
   }
-
 	
-  if ENV["MEMCACHEDCLOUD_SERVERS"]
-    config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
-  end
+  #if ENV["MEMCACHEDCLOUD_SERVERS"]
+  #config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  #end
 
   #config.cache_store = :dalli_store, ENV['SMARTTOOLS_CACHE_ENDPOINT']
 
