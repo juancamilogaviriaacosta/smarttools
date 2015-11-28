@@ -1,6 +1,6 @@
 class Contest < ActiveRecord::Base
 
-  has_attached_file :banner, styles: {
+	has_attached_file :banner, styles: {
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>'
@@ -29,4 +29,4 @@ class Contest < ActiveRecord::Base
 			errors.add(:fechainicio, "La fecha inicial no puede ser despues de la final")
 		end
 	end
-end 
+end

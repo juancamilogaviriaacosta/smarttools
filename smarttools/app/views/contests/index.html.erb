@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <%#= will_paginate @contests %>
+    <%= will_paginate @contests %>
     <% @contests.each do |contest| %>
       <tr>
         <td><%= contest.nombre %></td>

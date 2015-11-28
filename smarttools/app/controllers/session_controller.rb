@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   end
   
   def create
-  	admin = Administrator.where(:correo => params[:session][:correo].downcase).first;
+  	admin = Administrator.find_by(correo: params[:session][:correo].downcase);
   	if(admin && admin.contrasena == params[:session][:contrasena]) 
   		#Correct credentials
   		log_in admin

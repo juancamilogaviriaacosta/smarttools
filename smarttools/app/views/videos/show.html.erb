@@ -19,9 +19,7 @@
   <strong>Subido por:</strong>
   <%= @video.user.nombre + " " + @video.user.apellido %>
 </p>
-<!--
- if current_user && @contest.administrator_id == current_user.id 
--->
+<% if current_user && @contest.administrator_id == current_user.id %>
 <p>
   <strong>Video original:</strong>
   <br/>
@@ -31,9 +29,7 @@
   </p>
 
   <br/><br/><br/>
-  <!--
-   end 
-  -->
+  <% end %>
   <p>
     <strong>Video:</strong>
     <br/>
