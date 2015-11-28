@@ -9,7 +9,7 @@ module SessionHelper
 	end
 
 	def current_user
-		if @current_user.nil? && !session[:user_id].nil?
+		if !session[:user_id].nil?
 			@current_user = Administrator.find(session[:user_id])
 		end
 	end

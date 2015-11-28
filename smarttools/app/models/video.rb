@@ -50,7 +50,7 @@ class Video < ActiveRecord::Base
 
     
 
-    self.urlconvertido = 'https://s3-us-west-2.amazonaws.com/smarttoolscloud/' + rutaS3
+    self.urlconvertido = 'https://' + ENV['CLOUDFRONT_DIST'] + '/' + rutaS3
     self.estado = 'proc'
     self.save
 
