@@ -1,5 +1,6 @@
 require 'streamio-ffmpeg'
 require 'fileutils'
+require 'paperclip' 
 
 class Video < ActiveRecord::Base
 
