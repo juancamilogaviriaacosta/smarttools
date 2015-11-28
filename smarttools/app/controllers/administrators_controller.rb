@@ -25,8 +25,7 @@ class AdministratorsController < ApplicationController
   # POST /administrators
   # POST /administrators.json
   def create
-    newParams = {:nombre => administrator_params[:nombre], :apellido => administrator_params[:apellido], :correo => administrator_params[:correo], :contrasena => administrator_params[:contrasena]}
-    @administrator = Administrator.new(newParams)
+    @administrator = Administrator.new(administrator_params)
     respond_to do |format|
       if @administrator.save
         format.html { redirect_to @administrator, notice: 'El administrador ha sido creado correctamente.' }
