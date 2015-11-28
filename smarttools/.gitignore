@@ -16,3 +16,4 @@
 /uploaded_videos/processed/*
 
 /public/*
+.env

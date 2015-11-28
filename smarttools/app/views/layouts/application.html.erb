@@ -23,8 +23,7 @@
                         <% if !logged_in? %>
                             <li><a href="/login" title="#">LOG IN</a></li>
                             <li><a href="/administrators/new" title="#">REGISTRO</a></li>                            
-                        <% end %>
-                        <% if logged_in? %>
+                        <% else %>
                             <li><a href="/logout" title="#">LOG OUT</a></li>
                             <li><a href="/contests" title="#">MIS CONCURSOS</a></li>  
                         <% end %>

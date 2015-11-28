@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'videos/new/:contest_id' => 'videos#new'
   post 'videos/:contest_id' => 'videos#create'
 
+  get '/' => 'home#index'
+
   resources :videos
   resources :users
   resources :contests
