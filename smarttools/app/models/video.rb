@@ -13,27 +13,7 @@ class Video < ActiveRecord::Base
 	belongs_to :contest
 	belongs_to :user
 
-  #Transcodes this video to an mp4 (h.264/aac) format
   def convert_to_mp4
-    #FFMPEG.ffmpeg_binary = '/usr/local/Cellar/ffmpeg/2.8.reinstall/bin/ffmpeg'
-    #options = "-acodec aac -vcodec mpeg4 -strict experimental"
-    #pathAOriginal = urloriginal.clone
-    #pathAOriginal[0] = ''
-    #pathAOriginal = File.join(Rails.public_path, pathAOriginal) 
-    #ffMovie = FFMPEG::Movie.new(pathAOriginal)
-
-    #nombreVideo = SecureRandom.uuid + ".mp4"
-    #carpeta = File.join(Rails.public_path, "uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed")
-    #rutaAbsoluta = File.join(carpeta, nombreVideo)
-    #FileUtils.mkdir_p(carpeta)
-
-    #self.urlconvertido = File.join("/uploaded_videos", Time.now.strftime("%Y-%m-%d"), "processed", nombreVideo)
-
-    #ffMovie.transcode(rutaAbsoluta, options)
-
-
-
-
 
     carpeta = File.join(Rails.public_path, "tmp_videos", Time.now.strftime("%Y-%m-%d"))
     FileUtils.mkdir_p(carpeta)
@@ -50,9 +30,6 @@ class Video < ActiveRecord::Base
     archivo = File.basename(rutaAbsolutaConvertido)
     rutaS3 = 'videos/processed/' + Time.now.strftime("%Y-%m-%d") + "/" + archivo
     s3.buckets[ENV['BUCKET']].objects[rutaS3].write(:file => rutaAbsolutaConvertido)
-
-
-    
 
     self.urlconvertido = 'https://' + ENV['CLOUDFRONT_DIST'] + '/' + rutaS3
     self.estado = 'proc'
